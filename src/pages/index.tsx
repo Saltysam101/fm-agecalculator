@@ -1,4 +1,7 @@
 import Head from "next/head";
+import * as dayjs from 'dayjs';
+
+console.log(dayjs)
 
 export default function Home() {
   return (
@@ -11,9 +14,12 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div>
           <form action="">
-            <input type="number" />
+            <label htmlFor="day">Day</label>
+            <input id="day" type="number" />
+            <label htmlFor="month">Month</label>
             <input type="text" />
-            <input type="number" />
+            <label htmlFor="year">Year</label>
+            <input id="year" type="number" />
             <button type="submit">Submit</button>
           </form>
           <section>
