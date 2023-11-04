@@ -1,7 +1,19 @@
 import Head from "next/head";
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
-console.log(dayjs)
+
+dayjs.extend(relativeTime);
+
+const current = dayjs();
+
+const currentYear = current.$y as number;
+const currentMonth = current.$M as number;
+const currentDay = current.$D as number;
+
+console.log(currentYear, currentMonth, currentDay)
+
+
 
 export default function Home() {
   return (
