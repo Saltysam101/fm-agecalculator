@@ -5,11 +5,9 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-const current = dayjs();
-
-const currentYear = current.$y as number;
-const currentMonth = current.$M as number;
-const currentDay = current.$D as number;
+const currentYear = dayjs().year();
+const currentMonth = dayjs().month() + 1;
+const currentDay = dayjs().date();
 
 console.log(currentYear, currentMonth, currentDay)
 
