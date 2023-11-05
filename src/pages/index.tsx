@@ -1,15 +1,18 @@
 import Head from "next/head";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 
 dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
 
 const currentYear = dayjs().year();
 const currentMonth = dayjs().month() + 1;
 const currentDay = dayjs().date();
 
 console.log(currentYear, currentMonth, currentDay)
+console.log(dayjs("2023-4-07","YYYY-M-DD", true).isValid())
 
 
 
