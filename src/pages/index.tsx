@@ -5,6 +5,8 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 export default function Home() {
 
+  type calculated = number | string
+
   //Allows for date validation
 dayjs.extend(customParseFormat);
 
@@ -14,14 +16,21 @@ const currentMonth = dayjs().month() + 1;
 const currentDay = dayjs().date();
 
   //state
-const [day, setDay] = useState<number>(currentDay);
-const [month, setMonth] = useState<number>(currentMonth);
-const [year, setYear] = useState<number>(currentYear);
+const [day, setDay] = useState("");
+const [month, setMonth] = useState("");
+const [year, setYear] = useState("");
+const [calcYear, setCalcYear] = useState<calculated>("--")
+const [calcMonth, setCalcMonth] = useState<calculated>("--")
+const [calcDay, setCalcDay] = useState<calculated>("--")
 const date = `${year}-${month}-${day}`;
 
 const handleSubmit = () => {
-  if(dayjs(date, "YYYY-M-DD", true).isValid()){
+  if(dayjs(date, "YYYY-M-D", true).isValid()){
     console.log("submit true")
+    setCalcYear(currentYear - parseInt(year) + " years")
+    setCalcMonth(Math.abs(currentMonth - parseInt(month)) + " months")
+    setCalcDay(Math.abs(currentDay - parseInt(day)) + " days")
+    console.log(calcYear, calcDay, calcMonth)
   } else {
     console.log("submit false")
   }
@@ -41,17 +50,17 @@ const handleSubmit = () => {
             handleSubmit()
           }}>
             <label htmlFor="day">Day</label>
-            <input id="day" type="number" value={day} onChange={(e)=> setDay( parseInt(e.target.value))}/>
+            <input id="day" type="number" placeholder="DD" value={day} onChange={(e)=> setDay(e.target.value)}/>
             <label htmlFor="month">Month</label>
-            <input id="month" type="number" value={month} onChange={(e)=> setMonth( parseInt(e.target.value))}/>
+            <input id="month" type="number" placeholder="MM" value={month} onChange={(e)=> setMonth(e.target.value)}/>
             <label htmlFor="year">Year</label>
-            <input id="year" type="number" value={year} onChange={(e) => setYear( parseInt(e.target.value))}/>
+            <input id="year" type="number" placeholder="YYYY" value={year} onChange={(e) => setYear(e.target.value)}/>
             <button type="submit">Submit</button>
           </form>
           <section>
-            <p>25 Years</p>
-            <p>3 Months</p>
-            <p>7 Days</p>
+            <p>{calcYear}</p>
+            <p>{calcMonth}</p>
+            <p>{calcDay}</p>
           </section>
         </div>
       </main>
