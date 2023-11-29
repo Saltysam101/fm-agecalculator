@@ -44,7 +44,7 @@ const handleSubmit = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-slate-500">
-        <div className="w-4/5 h-96 flex flex-col items-center bg-white">
+        <div className="w-4/5 max-w-xs h-96 flex flex-col items-center bg-white">
           <form
           className="flex w-4/5 h-1/3 border-b-2 justify-between relative"
            onSubmit={(e) => {
